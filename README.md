@@ -298,5 +298,69 @@
 | CC BY-NC-SA    | No        | Yes    | Yes        | Yes        |
 | CC BY-NC-ND    | No        | No     | No         | Yes        |
 
+### Critical evaluation?
+
+#### What is critical evaluation?
+
+- Ability to:
+    + Identify useful information or resources related to a question, problem, or decision that you need to make.
+    + Evaluate how significant that information is and what it means in the context of your situation.
+    + Make decisions that are supported by your evaluation — and understand why you are doing so.
+
+#### What variables are involved in complex decisions?
+
+Variables that are strongly fact-influenced include:
+
+- Non-negotiable project requirements: If you’re working on a professional project, there may be set requirements that are out of your control. 
+- Resources available: If you only have particular resources available to you, this may restrict your options. 
+- Dependencies: If one system is dependent on another, then your choices may be influenced or dictated entirely by that dependency.
+
+Variables that are strongly influenced by thoughts and feelings include:
+
+- Creative vision: Intuition and aesthetic taste can influence your creative vision as much as the understanding you have developed of your craft. This could mean that you start a project with a very clear idea about the outcome that you want to achieve, which would impact many if not all decisions.
+- Risk and expediency: Approaches to risk and balancing pragmatic and rigorous approaches are often strongly influenced by personal preferences as well as awareness of key facts that relate to the decision.
+
+#### How do I get the information I need?
+
+- Asking questions
+
+#### A framework for decision-making
+
+- Why is this decision important? This question can be used to clarify your objective in making the decision.
+- What do you need to know to properly understand the situation? This question helps you dig down to identify the questions that you need to answer before you can decide.
+- Who is or will be impacted by this decision? This question reminds you to consider others — even if you’re making the decision alone and you will bear the impact, it’s an important point to consider.
+- What are the risks and how can you mitigate them? This question encourages you to think proactively about addressing risks, either before or after making the decision.
+
+#### How do I evaluate information to make a decision?
+
+Before you begin analysing the information that you’ve gathered, it’s often worthwhile checking in with yourself about the decision you need to make or the problem you need to solve.
+
+- Are there any questions related to the decision where you’re working from assumptions? If so — are there more questions you need to find answers to so that you can break through those assumptions?
+- Are there any strong thoughts or feelings that are impacting your perspective on the decision? If so — can you identify why you think or feel that particular way?
+
+Evaluate your information: 
+- Who or what is the source of this information?
+- How relevant is the information to the decision you’re trying to make?
+- How reliable is the information?
+- What is the wider context of the information?
+- Can you identify any limitations or shortfalls to the information?
+
+After completing this evaluation, you might decide that you need to take one or more of the following actions:
+
+- Ask your own query in the forum to get more specific answers.
+- Speak to more experienced creators in your creative network to get advice.
+- Find a mentor who can take the time to deeply understand your current competencies and experience and give more detailed guidance on both the feature and what you would need to make it.
+
+#### What happens after I’ve made a decision?
+
+- Sharing your decision with others
+
+    + When you’ve gone through a detailed process of evaluation to support a decision, it can be much easier to communicate both the decision itself and your reasoning behind it to other people with clarity.
+
+    + This clarity can be incredibly useful when working with collaborators or returning to a previously-made decision at a later stage.
+
+- Reflecting on your decision
+
+    + It’s hard (if not impossible!) to make a perfect decision. As a creator, reflecting on the choices that you made and considering what you could do better next time is an important part of the development of your craft. As with sharing your decision, the evaluation work that you did will help you in this reflection process.
 ---
 ## References
