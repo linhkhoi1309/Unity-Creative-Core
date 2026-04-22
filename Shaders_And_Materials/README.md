@@ -40,3 +40,12 @@
 - Baked Lit: automatically applied to lightmaps.
 - Complex Lit, Lit, and Simple Lit: These are all variations on a general-purpose, physically based lit shader.
 - Unlit: a shader that does not use light.
+
+## Relationship between shaders and materials
+
+- Shaders can be very specific or quite versatile. 
+- A shader can set the color of GameObjects or it can allow color to be configurable by materials. In fact, one shader can make many objects look like entirely different substances, while still giving a scene a unified look.
+- Shaders and materials work together as a team — the shader defines what a surface **can** look like, while the material defines what it **does** look like.
+
+## Side notes:
+- When a material has a shader that is mismatched to the current render pipeline, it is bright magenta (pink) to alert you.
