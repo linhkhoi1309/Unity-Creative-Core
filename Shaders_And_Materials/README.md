@@ -134,3 +134,35 @@ When light comes in contact with any object, it can do one of three things: boun
 ![Specular Workflow](References/specular.png)
 
 ![Metallic Workflow](References/metallic.png)
+
+## Textures
+
+- are regular image files in formats you might be familiar with, such as BMP, TIF, PNG, and JPG.
+- The data in image files is organized into channels. 
+- Black and white images, also known as grayscale images, have just one channel to indicate the shade of gray in each pixel. 
+- Color images require three channels, red, green, and blue (RGB), which combine to create the colors you see on your computer display.
+- Some image file formats have four channels: red, green, blue, and alpha (RGBA). The alpha channel typically contains transparency data.
+- Each channel of an image file, by itself, is a matrix of numbers. In materials, these numbers can indicate other properties besides color or transparency — such as smoothness, specularity or metalness — and even the direction each pixel faces to create the appearance of physical features.
+
+## Base map texture
+- (also known as diffuse or albedo) is a regular RGB or RGBA color image file that defines the diffuse reflection — that is, the colors — for the surface of an object.
+- can also include transparency information in the alpha channel of the map
+
+## Tiled textures
+
+- are designed to be tiled around any mesh. 
+- the map in each file simply repeats like the tiles on a floor
+
+- Note: Tiling and Offset settings apply to all the maps on the mesh.
+    - Tiling is the number of tiles per unit on the surface of the mesh. A higher number makes the pattern smaller.
+    - Offset begins the tiling at a different point. For example, an X Offset of 0.5 offsets the tiling by half the width of the texture.
+
+## UV mapped textures
+
+- Meshes made by modeling applications, such as Autodesk® 3ds Max® and Maya®, or Blender®, generate their own sets of 2D coordinates called UV coordinates. UV coordinates are like the XY coordinates in regular 2D spaces, but they are called UV to differentiate them from the coordinate system of the environment (XYZ). UV coordinates are relative to the mesh, not the 3D space in your scene.
+- UV mapping is the process of unwrapping the surface of a 3D model to create a flat surface, then applying a 2D texture map to it. In the process, the modeling application generates the UV coordinates that allow the texture to be wrapped back onto the model.
+
+## Notes
+- The smoothness map is stored in the alpha channel of the texture file.
+- Remember that lighter colors are high values and darker colors are lower values. For example, white areas on a smoothness map are the most smooth.
+- Remember that the Specular workflow uses three color channels, and the Metallic workflow uses only R.
