@@ -166,3 +166,37 @@ When light comes in contact with any object, it can do one of three things: boun
 - The smoothness map is stored in the alpha channel of the texture file.
 - Remember that lighter colors are high values and darker colors are lower values. For example, white areas on a smoothness map are the most smooth.
 - Remember that the Specular workflow uses three color channels, and the Metallic workflow uses only R.
+
+## Notes
+
+### Transparency
+- When rendering opaque objects, you tend to draw them starting with the closest object, because anything behind that object doesn't need to be drawn at all.
+- It's obscured by the closer object and you get an efficiency win.
+### Alpha-blended Transparency
+- Transparent objects need to blend color with the color of the object behind it based on the alpha value of the object, this is called alpha-blended transparency
+- Firstly, all opaque objects need to be drawn first before any transparent objects are drawn
+- Unity enforces this with a queue system, whereby all shaders are assigned a queue number and lower numbers are drawn before higher numbers. In shader code, we specify the number manually but Shader Graph will automatically handle that for us.
+- Second, it means that transparent objects are rendered back-to-front, with the furthest objects drawn first, and objects closer to the camera drawn later. This ordering ensures that overlapping transparent objects get their colors blended properly.
+- By default, Shader Graph use opaque rendering. To enable transparency, go to Graph Settings > Surface Type > Transparent
+
+### Alpha Clipping
+- With alpha clipping, we can set a threshold, and any pixel with alpha below the threshold gets culled - it's not rendered
+- To enable alpha clipping, go to Graph Settings > Surface Type > Opaque and check Alpha Clipping box
+
+### Dithering Transparency
+
+- simulates transparency without using alpha-blended transparency
+- Instead of making every pixel semi-transparent, it:
+    + Keeps some pixels fully visible
+    + Discards others based on a pattern (noise or matrix)
+→ From a distance, it looks like partial transparency
+
+- Pros: 
+    + Avoids transparency sorting issues
+    + Works with opaque shaders (better depth handling)
+    + More performance-friendly (no blending cost)
+- Cons:
+    + Looks grainy/noisy up close
+    + Not as smooth as real transparency
+    + Can flicker with camera movement
+- Use cases: Fade in/out effects, LOD transitions. Stealth/invisibility effects
