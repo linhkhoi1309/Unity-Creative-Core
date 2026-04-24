@@ -263,4 +263,37 @@ Remaining ~30% covers the rest of the scene
     + It must be explicitly enabled in the pipeline assets before it can be accessed in shaders.
 - Use cases: Silhouette
 
-### 
+### Vertex Transformation Pipeline
+
+- Each frame, Unity processes mesh data to determine where vertices appear on the screen.
+- Vertices start in object space:
+    - Positions are defined relative to the mesh’s local origin.
+- They are then transformed into world space:
+    - Using the object’s Transform (position, rotation, scale)
+    - Now relative to the world origin
+- Next, vertices move into view space (camera space):
+    - Based on the camera’s position and orientation
+    - The camera becomes the reference point
+- Then into clip space:
+    - Using the camera’s projection (perspective or orthographic)
+    - This prepares vertices for projection onto the screen
+- Finally, after perspective division, they end up in screen space:
+    - Coordinates mapped to the 2D screen
+### Vertex Shader
+- This sequence of transformations is handled by the vertex shader.
+- Its main job is to:
+    - Transform vertex positions through these spaces
+    - Pass data (e.g., UVs, normals) to the next stage
+- In Shader Graph, these transformations are handled automatically behind the scenes
+
+### Rasterization
+- After vertex processing, the GPU performs rasterization to converts triangles into fragments (potential pixels)
+
+### Fragment Shader
+
+- The fragment shader runs for each fragment:
+    - Determines the final color of each pixel
+- It can use:
+    - Textures
+    - Lighting calculations
+    - Depth and other data
