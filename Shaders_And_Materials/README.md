@@ -167,7 +167,7 @@ When light comes in contact with any object, it can do one of three things: boun
 - Remember that lighter colors are high values and darker colors are lower values. For example, white areas on a smoothness map are the most smooth.
 - Remember that the Specular workflow uses three color channels, and the Metallic workflow uses only R.
 
-## Notes
+## Shader Graph Sandbox
 
 ### Transparency
 - When rendering opaque objects, you tend to draw them starting with the closest object, because anything behind that object doesn't need to be drawn at all.
@@ -200,3 +200,67 @@ When light comes in contact with any object, it can do one of three things: boun
     + Not as smooth as real transparency
     + Can flicker with camera movement
 - Use cases: Fade in/out effects, LOD transitions. Stealth/invisibility effects
+
+
+### Frame buffer
+
+- The frame buffer is a block of memory that stores the final image to be displayed on the screen.
+- Each pixel typically contains color information (e.g., RGB or RGBA).
+- After rendering is complete, the frame buffer is presented to the display.
+
+### Depth buffer
+
+- Also called the z-buffer.
+- A second buffer with the same dimensions as the frame buffer.
+- Stores the distance between each rendered pixel and the camera.
+- Depth values are usually stored in the range [0, 1].
+- The mapping from distance to depth is non-linear, allocating more precision to objects closer to the camera to reduce visual artifacts.
+
+### Depth Mapping
+
+- For each pixel, Unity computes its distance from the camera (z-value).
+- This value lies between the near and far clip planes.
+- The z-value is transformed into a depth value using: depth = ( 1/z - 1/near ) / ( 1/far - 1/near )
+- This produces a non-linear curve, concentrating precision near the camera.
+
+### Why Non-Linear Depth?
+
+- A linear mapping would distribute precision evenly.
+- This can cause:
+    + Z-fighting (incorrect rendering order)
+    + Loss of precision for nearby objects
+- With typical values (near = 0.3, far = 1000): ~70% of precision is used within the first meter
+Remaining ~30% covers the rest of the scene
+
+### Depth Testing
+
+- During rendering, each fragment (potential pixel) has a computed depth value.
+- This value is compared against the corresponding value already stored in the depth buffer.
+- If the new fragment has a lower or equal depth value (i.e., closer to the camera), it passes the depth test:
+    - The fragment’s color is written to the frame buffer.
+    - The depth buffer is updated with the new depth value (for opaque objects).
+- If the fragment fails the depth test:
+    - It is discarded and does not affect the final image.
+- The default setting for depth test is LEqual (less or equal)
+
+### Transparency Considerations
+
+- Opaque objects typically write to both the frame buffer and depth buffer.
+- Transparent objects typically:
+    + Write to the frame buffer only.
+    + Do not update the depth buffer.
+- Because of this, transparent objects usually need to be rendered after opaque objects and often require sorting (back-to-front) to produce correct visual results.
+- The default setting for depth write is Auto (does write for opaque objects, does not for transparent object)
+
+### Camera Depth Texture (URP)
+- Shaders cannot directly read from the depth buffer during rendering.
+- After all opaque objects have been rendered, Unity copies the depth buffer into a texture called the camera depth texture.
+- This texture:
+    + Contains valid depth information only for opaque objects.
+    + Does not include depth data for transparent objects.
+    + Is mainly useful when writing transparent shaders or screen-space effects.
+- In the Unity Universal Render Pipeline (URP), this texture is not enabled by default.
+    + It must be explicitly enabled in the pipeline assets before it can be accessed in shaders.
+- Use cases: Silhouette
+
+### 
