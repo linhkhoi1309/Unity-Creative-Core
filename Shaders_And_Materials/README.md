@@ -66,6 +66,12 @@ When light comes in contact with any object, it can do one of three things: boun
 
 - is the direct reflection that is most visible on shiny objects.  
 - On the apple, the specular reflection is white, which indicates that the light source is white.
+- For smooth surfaces:
+    - Light is reflected in a specific direction
+    - The intensity depends on the viewer’s position
+- This is why:
+    - Shiny objects (metal, glass) have visible highlights
+    - Rough objects have softer or no highlights
 
 ### Diffuse reflections
 
@@ -73,6 +79,8 @@ When light comes in contact with any object, it can do one of three things: boun
 - other light penetrates the surface, and passes through or bounces around the outer layers of the apple. Some of this light is absorbed and some bounces out. 
 - the light that escapes is the diffuse reflection.
 - determines its visible color. On the apple, the non-red light is absorbed, and the red light is reflected to our eyes.
+- The brightness seen by the viewer does not depend on the viewing angle.
+- It depends only on the angle between the surface normal and the light direction. If this angle is greater than 90°,the surface receives no direct light.
 
 ## Diffuse reflectivity
 
@@ -172,6 +180,7 @@ When light comes in contact with any object, it can do one of three things: boun
 ### Transparency
 - When rendering opaque objects, you tend to draw them starting with the closest object, because anything behind that object doesn't need to be drawn at all.
 - It's obscured by the closer object and you get an efficiency win.
+
 ### Alpha-blended Transparency
 - Transparent objects need to blend color with the color of the object behind it based on the alpha value of the object, this is called alpha-blended transparency
 - Firstly, all opaque objects need to be drawn first before any transparent objects are drawn
@@ -297,3 +306,73 @@ Remaining ~30% covers the rest of the scene
     - Textures
     - Lighting calculations
     - Depth and other data
+
+
+### Ambient Light
+- Represents a base level of lighting applied uniformly across the scene.
+- Used to approximate indirect light bounce
+- Example: A room lit indirectly by sunlight through a window
+
+
+### Physically Based Rendering (PBR)
+- In Unity, the Lit shader uses Physically Based Rendering (PBR).
+- Instead of manually controlling lighting, you define material properties:
+    - Albedo (Base Color): The inherent color of the surface
+    - Smoothness / Roughness: Controls how sharp or spread out reflections are
+    - Metallic: Determines whether the material behaves like metal or non-metal
+- Based on these inputs, Unity automatically calculates:
+    - Diffuse lighting
+    - Specular reflections
+    - Energy conservation (realistic light behavior)
+- This results in:
+    - More realistic and consistent rendering
+    - Materials reacting naturally under different lighting conditions
+
+### Displacement texture
+
+- A grayscale texture that represents height variation across a surface.
+- Black = low areas, white = high areas.
+- Used to:
+    - Physically displace vertices (true geometry change)
+    - Or simulate depth using techniques like parallax mapping
+- Parallax Mapping:
+    - A cheaper alternative to real displacement
+    - Offsets texture coordinates based on view angle to create a fake depth effect
+    - Does not modify actual geometry
+### Normals texture
+
+- Encodes surface detail by modifying the normal direction per pixel
+- Does not change geometry
+- Result:
+    - Light reacts as if the surface has small bumps and details
+    - Improves realism with minimal performance cost
+
+### Roughness texture
+
+- Controls how rough or smooth a surface appears
+- Values:
+    - Black (0) → perfectly smooth (sharp reflections)
+    - White (1) → very rough (diffuse, blurry reflections)
+
+### Smoothness texture
+- The inverse of roughness
+- Values:
+    - Black (0) → rough surface
+    - White (1) → smooth surface
+
+### Emission
+
+- Defines areas of a material that emit light
+- Characteristics:
+    - Not affected by scene lighting
+    - Appears self-illuminated
+- Common uses: Screens, LEDs, neon, glowing effects
+
+### Ambient Occlusion tTxture
+- Describes how much each part of a surface is occluded from ambient light
+- Values:
+    - 0 (black) → fully exposed to ambient light
+    - 1 (white) → fully occluded (less ambient light reaches it)
+- Effect:
+    - Adds subtle shadowing in crevices and corners
+    - Enhances perceived depth and realism
