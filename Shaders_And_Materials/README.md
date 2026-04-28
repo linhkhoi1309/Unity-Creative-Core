@@ -238,8 +238,7 @@ When light comes in contact with any object, it can do one of three things: boun
 - This can cause:
     + Z-fighting (incorrect rendering order)
     + Loss of precision for nearby objects
-- With typical values (near = 0.3, far = 1000): ~70% of precision is used within the first meter
-Remaining ~30% covers the rest of the scene
+- With typical values (near = 0.3, far = 1000): ~70% of precision is used within the first meter. Remaining ~30% covers the rest of the scene
 
 ### Depth Testing
 
@@ -368,7 +367,7 @@ Remaining ~30% covers the rest of the scene
     - Appears self-illuminated
 - Common uses: Screens, LEDs, neon, glowing effects
 
-### Ambient Occlusion tTxture
+### Ambient Occlusion texture
 - Describes how much each part of a surface is occluded from ambient light
 - Values:
     - 0 (black) → fully exposed to ambient light
