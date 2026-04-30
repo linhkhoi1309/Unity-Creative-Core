@@ -175,6 +175,61 @@ When light comes in contact with any object, it can do one of three things: boun
 - Remember that lighter colors are high values and darker colors are lower values. For example, white areas on a smoothness map are the most smooth.
 - Remember that the Specular workflow uses three color channels, and the Metallic workflow uses only R.
 
+## Bump Mapping
+- the process of using textures to add the illusion of physical texture to a simple mesh without complicating it with lots of detailed polygons. 
+
+## Bump Maps
+
+- With bump mapping, you can tell the shader to add the appearance of surface detail to your mesh without actually adding polygons. 
+- This technique is better for performance, and the results can be pretty convincing!
+- There are two types of maps primarily used in bump mapping: normal maps and height maps.
+    - **Normal map** sets these values over an entire surface, which directs the shader to create the illusion that fragments (pixels) on the surface are facing different directions.
+    - **Height maps** indicate the relative height of each pixel from the mesh.
+
+### Normal map
+
+- A normal map is similar to a base map, except that the red, green, and blue values indicate the direction of the normal relative to the mesh surface.
+- Normal maps are mostly cyan and purple because the directions are expressed using higher values in the blue channel.
+
+![Normal Map Example](References/NormalMapExample.png)
+
+### Height map
+
+- Height maps indicate the relative height of each pixel from the mesh. 
+- These are single-channel (grayscale) maps in which each pixel value indicates a relative distance from the mesh surface. 
+- When you use an RGB image as a height map, the shader only reads the green channel.
+
+## Occlusion Map
+
+- Occlusion is the blockage of light by an object.
+- Examples: A crack in a sidewalk and the thin dark shadow line between the fingers of a closed fist
+- An occlusion map adds shadows to these occluded areas.
+
+## Microsurface Map
+
+- Detail Normal Map
+    - A tiled normal map layered on top of the main normal map.
+    - Adds fine surface detail (e.g., scratches, fabric weave) without changing the base shape.
+    - Typically uses higher tiling to create small-scale variation.
+- Detail Base Map (Detail Albedo)
+    - A tiled color texture applied over the main base color.
+    - Adds high-frequency color detail such as fabric threads, dirt, or noise.
+    - Blended with the base map to enrich surface appearance.
+- Mask Map (Detail Mask)
+    - Usually stored in the alpha channel of a texture.
+    - Controls where detail maps are applied.
+    - White = detail fully applied
+    - Black = detail suppressed
+
+## Emission Map
+
+- Emission map is a texture used to specify areas where your surface will glow.
+
+## HDR (High Dynamic Range)
+- HDR colors have an additional luminosity outside the regular range of display colors. 
+- These are useful for glowing objects and intense specular reflections. 
+- The HDR color picker has an intensity slider to control how much additional luminosity is added to the color.
+
 ## Shader Graph Sandbox
 
 ### Transparency
